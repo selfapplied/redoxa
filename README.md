@@ -64,7 +64,7 @@ python src/demos/ce1_quick_demo.py
 - **Visualizations**: Make patterns visible
 
 ### 📚 **Learn More**
-- Read [Technical Overview](docs/technical-overview.md) for deep technical details
+- Dive into [Mathematical Foundations](docs/math.md) - comprehensive crash course on the math
 - Explore [Architecture Documentation](docs/architecture.md)
 - Check [Contributing Guide](CONTRIBUTING.md)
 
