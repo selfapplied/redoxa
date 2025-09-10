@@ -14,11 +14,15 @@ build:
 	@echo "Building Redoxa (fast development build)..."
 	@mkdir -p .out
 	@. .venv/bin/activate && maturin develop
+	@echo "Cleaning up build artifacts..."
+	@rm -rf dist/ 2>/dev/null || true
 
 # Full release build (slow but optimized)
 release:
 	@echo "Building Redoxa (release mode)..."
 	@. .venv/bin/activate && maturin build --release
+	@echo "Cleaning up build artifacts..."
+	@rm -rf dist/ 2>/dev/null || true
 
 # Train artifacts as models (PGO + LTO + specialization)
 train:
