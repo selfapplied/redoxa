@@ -64,9 +64,11 @@ python src/demos/ce1_quick_demo.py
 - **Visualizations**: Make patterns visible
 
 ### 📚 **Learn More**
-- Dive into [Mathematical Foundations](docs/math.md) - comprehensive crash course on the math
-- Explore [Architecture Documentation](docs/architecture.md)
-- Check [Contributing Guide](CONTRIBUTING.md)
+- Start with the [Crash Course](docs/crash/README.md) - your gateway to the computational multiverse
+- Dive into [Mathematical Foundations](docs/math.md) - comprehensive mathematical framework
+- Explore [The Artifice of Reality](docs/artifice.md) - hidden worlds within mathematical constructs
+- Check [Architecture Documentation](docs/architecture.md)
+- Read the [Contributing Guide](CONTRIBUTING.md)
 
 ## 🌌 The Computational Multiverse
 
