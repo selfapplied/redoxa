@@ -1,0 +1,72 @@
+name: 🎨 Showcase Your Work
+description: Share your Redoxa experiments, demos, or creative work
+title: "[Showcase] "
+labels: ["creative", "showcase"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We love seeing what the community creates with Redoxa! Share your experiments, demos, visualizations, or creative work.
+        
+  - type: textarea
+    id: work-type
+    attributes:
+      label: Type of Work
+      description: What kind of work are you showcasing?
+      placeholder: |
+        - New demo scenario
+        - Visualization tool
+        - Research experiment
+        - Creative project
+        - Educational content
+        - Other
+    validations:
+      required: true
+      
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Tell us about your work
+      placeholder: |
+        - What did you create?
+        - What inspired it?
+        - What did you discover?
+        - How does it relate to Redoxa?
+    validations:
+      required: true
+      
+  - type: textarea
+    id: files-links
+    attributes:
+      label: Files or Links
+      description: Share your code, demos, or other resources
+      placeholder: |
+        - GitHub repository links
+        - Code snippets
+        - Demo videos
+        - Documentation
+        - Other resources
+        
+  - type: textarea
+    id: learnings
+    attributes:
+      label: Key Learnings
+      description: What did you learn or discover?
+      placeholder: |
+        - New patterns or behaviors
+        - Technical insights
+        - Creative possibilities
+        - Research findings
+        - Community insights
+        
+  - type: textarea
+    id: next-steps
+    attributes:
+      label: Next Steps
+      description: What would you like to explore next?
+      placeholder: |
+        - Future experiments
+        - Collaboration opportunities
+        - Areas for improvement
+        - Questions for the community

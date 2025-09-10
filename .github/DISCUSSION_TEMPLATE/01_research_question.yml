@@ -1,0 +1,55 @@
+name: 🔬 Research Question
+description: Ask a question about Redoxa's computational paradigms or research areas
+title: "[Research] "
+labels: ["research", "question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your interest in Redoxa research! This template helps us understand your question and provide the best possible answer.
+        
+  - type: textarea
+    id: research-area
+    attributes:
+      label: Research Area
+      description: Which area of Redoxa research are you asking about?
+      placeholder: |
+        - CE1 Seed Fusion
+        - Three-Ring VM Architecture
+        - Unified Probe System
+        - Quantum-Classical Bridge
+        - Other (please specify)
+    validations:
+      required: true
+      
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know or explore?
+      placeholder: Describe your research question in detail...
+    validations:
+      required: true
+      
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What background or context should we know?
+      placeholder: |
+        - Your research background
+        - Related work you're familiar with
+        - Specific aspects you're interested in
+        - Any experiments you've tried
+        
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Expected Outcome
+      description: What kind of answer or guidance are you looking for?
+      placeholder: |
+        - Theoretical explanation
+        - Implementation guidance
+        - Research direction
+        - Collaboration opportunity
+        - Other

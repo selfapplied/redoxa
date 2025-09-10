@@ -1,0 +1,75 @@
+name: 💡 Idea Brainstorm
+description: Share ideas for new features, research directions, or creative projects
+title: "[Idea] "
+labels: ["idea", "brainstorm"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea for Redoxa? We'd love to hear it! This is a space for brainstorming new possibilities in the computational multiverse.
+        
+  - type: textarea
+    id: idea-type
+    attributes:
+      label: Type of Idea
+      description: What kind of idea are you sharing?
+      placeholder: |
+        - New feature
+        - Research direction
+        - Demo scenario
+        - Visualization concept
+        - Architecture improvement
+        - Creative project
+        - Other
+    validations:
+      required: true
+      
+  - type: textarea
+    id: idea-description
+    attributes:
+      label: Your Idea
+      description: Describe your idea in detail
+      placeholder: |
+        - What is your idea?
+        - How would it work?
+        - What problem does it solve?
+        - What possibilities does it open up?
+    validations:
+      required: true
+      
+  - type: textarea
+    id: inspiration
+    attributes:
+      label: Inspiration
+      description: What inspired this idea?
+      placeholder: |
+        - Existing Redoxa features
+        - Other research or projects
+        - Personal interests
+        - Community discussions
+        - Random thoughts
+        - Other
+        
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Thoughts
+      description: Any thoughts on how this might be implemented?
+      placeholder: |
+        - Technical approach
+        - Required components
+        - Potential challenges
+        - Resources needed
+        - Timeline considerations
+        
+  - type: textarea
+    id: collaboration
+    attributes:
+      label: Collaboration
+      description: Are you interested in working on this idea?
+      placeholder: |
+        - Yes, I'd like to implement it
+        - Yes, I'd like to collaborate
+        - Maybe, depending on interest
+        - No, just sharing the idea
+        - Not sure yet
