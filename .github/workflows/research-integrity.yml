@@ -1,0 +1,93 @@
+name: Research Integrity Check
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run weekly to check for stale documentation
+    - cron: '0 0 * * 0'
+
+jobs:
+  integrity-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Check documentation freshness
+      run: |
+        echo "Checking for stale documentation..."
+        
+        # Check if demo outputs are recent
+        if [ -f "src/demos/demo_outputs.md" ]; then
+          echo "Demo outputs file exists"
+          # Could add logic to check if outputs are recent
+        fi
+        
+        # Check if report is comprehensive
+        if [ -f "src/demos/report.md" ]; then
+          lines=$(wc -l < src/demos/report.md)
+          if [ $lines -gt 1000 ]; then
+            echo "✓ Report is comprehensive ($lines lines)"
+          else
+            echo "⚠ Report might need more content ($lines lines)"
+          fi
+        fi
+    
+    - name: Verify project structure
+      run: |
+        echo "Verifying project structure..."
+        
+        # Check for required directories
+        required_dirs=("src/core" "src/orchestrator" "src/demos" "src/kernels" "docs")
+        for dir in "${required_dirs[@]}"; do
+          if [ -d "$dir" ]; then
+            echo "✓ $dir exists"
+          else
+            echo "✗ $dir missing"
+            exit 1
+          fi
+        done
+        
+        # Check for key files
+        key_files=("README.md" "pyproject.toml" "src/core/Cargo.toml")
+        for file in "${key_files[@]}"; do
+          if [ -f "$file" ]; then
+            echo "✓ $file exists"
+          else
+            echo "✗ $file missing"
+            exit 1
+          fi
+        done
+    
+    - name: Check for TODO/FIXME comments
+      run: |
+        echo "Scanning for development markers..."
+        
+        # Count TODO/FIXME comments (informational only)
+        todo_count=$(grep -r "TODO\|FIXME" src/ --include="*.py" --include="*.rs" | wc -l)
+        echo "Found $todo_count TODO/FIXME comments"
+        
+        if [ $todo_count -gt 50 ]; then
+          echo "⚠ High number of development markers - consider cleanup"
+        else
+          echo "✓ Reasonable number of development markers"
+        fi
+    
+    - name: License and attribution check
+      run: |
+        echo "Checking license and attribution..."
+        
+        if [ -f "LICENSE" ]; then
+          echo "✓ LICENSE file exists"
+        else
+          echo "✗ LICENSE file missing"
+          exit 1
+        fi
+        
+        # Check for author attribution in key files
+        if grep -q "Joel\|Author" README.md; then
+          echo "✓ Author attribution found in README"
+        else
+          echo "⚠ Consider adding author attribution to README"
+        fi

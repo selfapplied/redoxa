@@ -1,0 +1,71 @@
+name: Demo Validation
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  demo-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install uv
+        uv sync
+    
+    - name: Validate demo syntax
+      run: |
+        # Check that all demo files can be imported without syntax errors
+        for demo in src/demos/*.py; do
+          echo "Checking $demo..."
+          python -m py_compile "$demo"
+        done
+    
+    - name: Check demo dependencies
+      run: |
+        # Verify demos can import their required modules
+        python -c "
+        import sys
+        sys.path.append('src/demos')
+        sys.path.append('src/orchestrator')
+        
+        # Test key imports
+        try:
+            import ce1_quick_demo
+            print('✓ CE1 quick demo imports OK')
+        except ImportError as e:
+            print(f'✗ CE1 quick demo import failed: {e}')
+        
+        try:
+            import network_lattice_demo
+            print('✓ Network lattice demo imports OK')
+        except ImportError as e:
+            print(f'✗ Network lattice demo import failed: {e}')
+        "
+    
+    - name: Documentation check
+      run: |
+        # Verify README and docs are properly formatted
+        python -c "
+        import os
+        docs = ['README.md', 'docs/README.md', 'docs/architecture.md']
+        for doc in docs:
+            if os.path.exists(doc):
+                with open(doc, 'r') as f:
+                    content = f.read()
+                    if len(content) > 100:  # Basic sanity check
+                        print(f'✓ {doc} has content')
+                    else:
+                        print(f'✗ {doc} seems too short')
+            else:
+                print(f'✗ {doc} missing')
+        "

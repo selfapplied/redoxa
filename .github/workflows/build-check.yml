@@ -1,0 +1,50 @@
+name: Build Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup Rust
+      uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        components: rustfmt, clippy
+    
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install uv
+      run: pip install uv
+    
+    - name: Install Python dependencies
+      run: uv sync
+    
+    - name: Check Rust formatting
+      run: cd src/core && cargo fmt -- --check
+    
+    - name: Check Rust clippy
+      run: cd src/core && cargo clippy -- -D warnings
+    
+    - name: Build Rust core
+      run: cd src/core && cargo build --release
+    
+    - name: Build WASM kernels
+      run: |
+        cd src/kernels/hilbert_lift && cargo build --release --target wasm32-wasi
+        cd ../mantissa_quant && cargo build --release --target wasm32-wasi
+    
+    - name: Check Python imports
+      run: |
+        python -c "import sys; sys.path.append('src/orchestrator'); import redoxa"
+        python -c "import sys; sys.path.append('src/demos'); import ce1_quick_demo"
