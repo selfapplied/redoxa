@@ -64,8 +64,8 @@ python src/demos/ce1_quick_demo.py
 - **Visualizations**: Make patterns visible
 
 ### 📚 **Learn More**
-- Read [Architecture Documentation](docs/architecture.md)
-- Explore [Community Guidelines](docs/community-guidelines.md)
+- Read [Technical Overview](docs/technical-overview.md) for deep technical details
+- Explore [Architecture Documentation](docs/architecture.md)
 - Check [Contributing Guide](CONTRIBUTING.md)
 
 ## 🌌 The Computational Multiverse

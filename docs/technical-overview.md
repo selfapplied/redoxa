@@ -1,4 +1,4 @@
-# Redoxa
+# Redoxa Technical Overview
 
 A three-ring virtual machine architecture for reversible computation and program-particle superposition, with unified I/O operations treating networking as distributed memory operations.
 
