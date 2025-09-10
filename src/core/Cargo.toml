@@ -1,0 +1,43 @@
+[package]
+name = "redoxa_core"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "redoxa_core"
+path = "lib.rs"
+crate-type = ["rlib", "staticlib", "cdylib"]
+
+[profile.dev]
+opt-level = 0
+debug = true
+incremental = true
+codegen-units = 16
+split-debuginfo = "unpacked"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+
+[features]
+default = ["standalone"]
+python = []          # placeholder only; MUST NOT pull PyO3 here
+standalone = []      # explicit, for CI matrices
+pgo = []
+lto = []
+thin-lto = []
+
+[dependencies]
+wasmtime = "15.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+sha2 = "0.10"
+zstd = "0.13"
+memmap2 = "0.9"
+anyhow = "1.0"
+thiserror = "1.0"
+uuid = { version = "1.0", features = ["v4"] }
+sysinfo = "0.30"
+hex = "0.4"

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["maturin"]
+build-backend = "maturin"
+
+[project]
+name = "redoxa"
+version = "0.1.0"
+description = "Three-ring VM for reversible computation"
+authors = [{name = "Joel", email = "joel@example.com"}]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.10.6",
+    "numpy",
+    "scipy>=1.16.1",
+    "cffi",
+    "aiohttp",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "black",
+    "mypy",
+]
+
+[tool.maturin]
+python-source = "src/orchestrator"
+module-name = "redoxa"
+manifest-path = "src/core/Cargo.toml"
+target-dir = ".out/target"
+
+[tool.setuptools]
+py-modules = []
+
+# Python cache configuration
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# Set PYCACHEPREFIX to organize cache files
+[tool.setuptools.package-data]
+"*" = ["*.py", "*.pyi"]
